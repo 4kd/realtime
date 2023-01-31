@@ -168,7 +168,7 @@ defmodule RealtimeWeb.TenantController do
         send_resp(conn, 204, "")
 
       nil ->
-        Logger.error("Atttempted to reload non-existant tenant #{tenant_id}")
+        Logger.error("Atttempted to reload non-existent tenant #{tenant_id}")
 
         conn
         |> put_status(404)
