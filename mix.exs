@@ -10,7 +10,15 @@ defmodule Realtime.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      dialyzer: dialyzer()
+      dialyzer: dialyzer(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        c: :test,
+        coveralls: :test,
+        "coveralls.json": :test,
+        "coveralls.html": :test
+      ]
+
     ]
   end
 
@@ -74,7 +82,10 @@ defmodule Realtime.MixProject do
       {:dialyxir, "~> 1.1.0", only: [:dev], runtime: false},
       {:benchee, "~> 1.1.0", only: :dev},
       {:timex, "~> 3.0"},
-      {:cachex, "~> 3.4.0"}
+      {:cachex, "~> 3.4.0"},
+
+      # Track test coverage: github.com/parroty/excoveralls
+      {:excoveralls, "~> 0.15", only: [:test, :dev]},
     ]
   end
 
@@ -86,6 +97,7 @@ defmodule Realtime.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
+      c: ["coveralls.html"],
       setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
