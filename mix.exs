@@ -18,7 +18,6 @@ defmodule Realtime.MixProject do
         "coveralls.json": :test,
         "coveralls.html": :test
       ]
-
     ]
   end
 
@@ -85,7 +84,7 @@ defmodule Realtime.MixProject do
       {:cachex, "~> 3.4.0"},
 
       # Track test coverage: github.com/parroty/excoveralls
-      {:excoveralls, "~> 0.15", only: [:test, :dev]},
+      {:excoveralls, "~> 0.15", only: [:test, :dev]}
     ]
   end
 
